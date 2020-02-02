@@ -16,6 +16,7 @@ export class StocksComponent implements OnInit, OnDestroy {
     symbolSub$: Subscription;
     periodSub$: Subscription;
     maxDate = new Date();
+    maxFromDate = new Date();
 
     constructor(private fb: FormBuilder, private priceQuery: PriceQueryFacade) {
         this.stockPickerForm = this.fb.group({
