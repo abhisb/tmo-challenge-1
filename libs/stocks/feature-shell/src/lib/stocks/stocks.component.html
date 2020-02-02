@@ -1,33 +1,42 @@
-<form [formGroup]="stockPickerForm">
-  <mat-form-field>
-    <input
-      matInput
-      placeholder="Symbol e.g AAPL"
-      formControlName="symbol"
-      value=""
-    />
-    <mat-error
-      ><span
-        *ngIf="
-          !stockPickerForm.get('symbol').valid &&
-          stockPickerForm.get('symbol').touched
-        "
-        >Please enter a symbol</span
-      >
-    </mat-error>
-  </mat-form-field>
+<div class="chartForm">
+  <form [formGroup]="stockPickerForm">
+    <mat-form-field>
+      <input matInput placeholder="Symbol e.g AAPL" formControlName="symbol" value="" />
+      <mat-error><span *ngIf="
+            !stockPickerForm.get('symbol').valid &&
+            stockPickerForm.get('symbol').touched
+          ">Please enter a symbol</span>
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Favorite time period</mat-label>
-    <mat-select formControlName="period">
-      <mat-option
-        *ngFor="let timePeriod of timePeriods"
-        [value]="timePeriod.value"
-      >
-        {{ timePeriod.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</form>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="periodFromPicker"
+        (focus)="periodFromPicker.open()"
+        readonly
+        [max]="maxFromDate"
+        placeholder="Period From"
+        formControlName="periodFrom"
+        (dateChange)="triggerDateChange()">
+      <mat-datepicker-toggle matSuffix [for]="periodFromPicker"></mat-datepicker-toggle>
+      <mat-datepicker #periodFromPicker></mat-datepicker>
+    </mat-form-field>
 
-<coding-challenge-chart [data$]="quotes$"></coding-challenge-chart>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="periodToPicker"
+        (focus)="periodToPicker.open()"
+        readonly
+        [max]="maxDate"
+        placeholder="Period To"
+        formControlName="periodTo"
+        (dateChange)="triggerDateChange()">
+      <mat-datepicker-toggle matSuffix [for]="periodToPicker"></mat-datepicker-toggle>
+      <mat-datepicker #periodToPicker></mat-datepicker>
+    </mat-form-field>
+  </form>
+
+  <coding-challenge-chart [data$]="quotes$"></coding-challenge-chart>
+</div>
