@@ -1,3 +1,12 @@
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+import 'zone.js/dist/zone-error';
+
 import { StocksAppConfig } from '@coding-challenge/stocks/data-access-app-config';
 
 // This file can be replaced during build by using the `fileReplacements` array.
@@ -7,14 +16,6 @@ import { StocksAppConfig } from '@coding-challenge/stocks/data-access-app-config
 export const environment: StocksAppConfig = {
   production: false,
   apiKey: 'pk_e8c2bd225b264096be5fb2acbf4fb747',
-  apiURL: 'https://cloud.iexapis.com'
+  apiURL: 'http://localhost:4233'
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-import 'zone.js/dist/zone-error';
